@@ -1,6 +1,6 @@
 #include "game.h"
 
-namespace GameXD
+namespace GameTest
 {
 	Game::Game()
 	{
@@ -49,6 +49,12 @@ namespace GameXD
 		/*Collision::CollisionUpdate(shape, player->GetSprite());
 		Collision::CollisionUpdate(shape2, player->GetSprite());*/
 		player->Update(input);
+		player->Move();
+
+		/*if (!tileMap->IsColliding(player->GetMovePos()))
+		{
+			player->Move();
+		}*/
 		tileMap->CheckCollision(player->GetSprite());
 	}
 

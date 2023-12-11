@@ -8,7 +8,7 @@
 
 using namespace GL;
 
-namespace GameXD
+namespace GameTest
 {
 	class GRAPHICSENGINE_API Game : public GL::BaseGame
 	{

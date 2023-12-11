@@ -1,6 +1,6 @@
 #include "Game/game.h"
 
-using namespace GameXD;
+using namespace GameTest;
 
 int main()
 {

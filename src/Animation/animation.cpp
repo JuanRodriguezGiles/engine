@@ -17,6 +17,10 @@ namespace GL
 		frames.clear();
 	}
 
+	//Update the current time based on delta time and speed
+	//Advance to the next frame if necessary
+	//Returns true if the frame was updated
+	//Returns false otherwise
 	bool Animation::Update()
 	{
 		currentTime += Timer::GetDeltaTime() * speed;
@@ -39,6 +43,8 @@ namespace GL
 		this->speed = speed;
 	}
 
+	//adds frames to the animation
+	//It calculates UV coordinates for each frame based on the provided parameters and adds them to the frames vector
 	void Animation::AddFrame(float frameX, float frameY, float frameWidth, float frameHeight, int frameCount)
 	{
 		float frameXIndex = 0;
@@ -63,7 +69,7 @@ namespace GL
 			frameXIndex += frameWidth;
 		}
 	}
-
+	//adds frames to the animation using an atlas configuration 
 	void Animation::AddFrames(AtlasConfig atlas)
 	{
 		if (atlas.useSize)

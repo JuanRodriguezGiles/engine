@@ -302,4 +302,47 @@ namespace GL
 			}
 		}
 	}
+
+	bool Tilemap::IsColliding(Entity2D* entity)
+	{
+		float convertedPosX = entity->GetPosX() + (width / 2) * tileWidth;
+		float convertedPosY = entity->GetPosY() - (height / 2) * tileHeight;
+
+		int left_tile = convertedPosX / tileWidth;
+		int right_tile = (convertedPosX + entity->GetScaleX()) / tileWidth;
+
+		int top_tile = (convertedPosY / tileHeight) * -1;
+		int bottom_tile = ((convertedPosY - entity->GetScaleY()) / tileHeight) * -1;
+
+		if (left_tile < 0)
+			left_tile = 0;
+
+		if (right_tile >= width)
+			right_tile = width - 1;
+
+		if (top_tile < 0)
+			top_tile = 0;
+
+		if (bottom_tile >= height)
+			bottom_tile = height - 1;
+
+		for (int i = left_tile; i <= right_tile; i++)
+		{
+			for (int j = top_tile; j <= bottom_tile; j++)
+			{
+				for (int k = 0; k < grid.size(); k++)
+				{
+					if (!grid[k][j][i].IsWalkeable())
+					{
+						if (Collision::CheckCollisionRecRec(&grid[k][j][i], entity))
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 }

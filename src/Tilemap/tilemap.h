@@ -25,6 +25,7 @@ namespace GL
 		void SetDimentions(float width, float height);
 		void SetSize(float size);
 		void CheckCollision(Entity2D* entity);
+		bool IsColliding(Entity2D* entity);
 
 		void Draw();
 		void DeInit();

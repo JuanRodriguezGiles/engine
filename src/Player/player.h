@@ -5,7 +5,7 @@
 #include "Input/input.h"
 #include "Sprite/sprite.h"
 
-namespace GameXD
+namespace GameTest
 {
 	enum class STATUS
 	{
@@ -28,6 +28,8 @@ namespace GameXD
 		void DeInit();
 
 		GL::Sprite* GetSprite();
+		GL::Sprite* GetMovePos();
+		void Move();
 
 	private:
 		GL::Sprite* sprite;
@@ -35,6 +37,7 @@ namespace GameXD
 		float speed;
 
 		void Inputs(GL::Input* input);
+		
 		void ChangeStatus(STATUS status);
 	};
 }

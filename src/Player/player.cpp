@@ -1,6 +1,6 @@
 #include "player.h"
 
-namespace GameXD
+namespace GameTest
 {
 	Player::Player()
 	{
@@ -70,22 +70,22 @@ namespace GameXD
 	{
 		if (input->IsKeyPressed(KEY_A) || input->IsKeyPressed(KEY_LEFT))
 		{
-			sprite->SetPos(sprite->GetPosX() - speed, sprite->GetPosY(), sprite->GetPosZ());
+			//sprite->SetPos(sprite->GetPosX() - speed, sprite->GetPosY(), sprite->GetPosZ());
 			ChangeStatus(STATUS::LEFT);
 		}
 		else if (input->IsKeyPressed(KEY_D) || input->IsKeyPressed(KEY_RIGHT))
 		{
-			sprite->SetPos(sprite->GetPosX() + speed, sprite->GetPosY(), sprite->GetPosZ());
+			//sprite->SetPos(sprite->GetPosX() + speed, sprite->GetPosY(), sprite->GetPosZ());
 			ChangeStatus(STATUS::RIGHT);
 		}
 		else if (input->IsKeyPressed(KEY_W) || input->IsKeyPressed(KEY_UP))
 		{
-			sprite->SetPos(sprite->GetPosX(), sprite->GetPosY() + speed, sprite->GetPosZ());
+			//sprite->SetPos(sprite->GetPosX(), sprite->GetPosY() + speed, sprite->GetPosZ());
 			ChangeStatus(STATUS::UP);
 		}
 		else if (input->IsKeyPressed(KEY_S) || input->IsKeyPressed(KEY_DOWN))
 		{
-			sprite->SetPos(sprite->GetPosX(), sprite->GetPosY() - speed, sprite->GetPosZ());
+			//sprite->SetPos(sprite->GetPosX(), sprite->GetPosY() - speed, sprite->GetPosZ());
 			ChangeStatus(STATUS::DOWN);
 		}
 		else if (input->IsKeyPressed(KEY_Q))
@@ -108,6 +108,56 @@ namespace GameXD
 		{
 			ChangeStatus(STATUS::IDLE);
 		}
+	}
+
+	void Player::Move()
+	{
+		switch (status)
+		{
+		case GameTest::STATUS::IDLE:
+			break;
+		case GameTest::STATUS::LEFT:
+			sprite->SetPos(sprite->GetPosX() - speed, sprite->GetPosY(), sprite->GetPosZ());
+			break;
+		case GameTest::STATUS::RIGHT:
+			sprite->SetPos(sprite->GetPosX() + speed, sprite->GetPosY(), sprite->GetPosZ());
+			break;
+		case GameTest::STATUS::UP:
+			sprite->SetPos(sprite->GetPosX(), sprite->GetPosY() + speed, sprite->GetPosZ());
+			break;
+		case GameTest::STATUS::DOWN:
+			sprite->SetPos(sprite->GetPosX(), sprite->GetPosY() - speed, sprite->GetPosZ());
+			break;
+		default:
+			break;
+		}
+	}
+
+	GL::Sprite* Player::GetMovePos()
+	{
+		GL::Sprite* moveSprite = new GL::Sprite();
+		moveSprite->SetPos(sprite->GetPos());
+
+		switch (status)
+		{
+		case GameTest::STATUS::IDLE:
+			break;
+		case GameTest::STATUS::LEFT:
+			moveSprite->SetPos(moveSprite->GetPosX() - speed, moveSprite->GetPosY(), moveSprite->GetPosZ());
+			break;
+		case GameTest::STATUS::RIGHT:
+			moveSprite->SetPos(moveSprite->GetPosX() + speed, moveSprite->GetPosY(), moveSprite->GetPosZ());
+			break;
+		case GameTest::STATUS::UP:
+			moveSprite->SetPos(moveSprite->GetPosX(), moveSprite->GetPosY() + speed, moveSprite->GetPosZ());
+			break;
+		case GameTest::STATUS::DOWN:
+			moveSprite->SetPos(moveSprite->GetPosX(), moveSprite->GetPosY() - speed, moveSprite->GetPosZ());
+			break;
+		default:
+			break;
+		}
+		return moveSprite;
 	}
 
 	void Player::ChangeStatus(STATUS status)
