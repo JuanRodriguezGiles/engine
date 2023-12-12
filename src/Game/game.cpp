@@ -34,14 +34,14 @@ namespace GameTest
 		
 		rockstar = new Sprite(render);
 		rockstar->Init();
-		rockstar->LoadTexture("../res/Textures/rock.png", true);
+		rockstar->LoadTexture("../res/Textures/frog.png", true);
 		rockstar->SetPos(0.0f, 100.0f, 0.0f);
 		rockstar->SetScale(55.f, 55.f, 1.0f);
-		rockstar->AddAnimation(2, 3, 25);
+		rockstar->AddAnimation(2, 4, 25);
 
 		tileMap = new Tilemap(render);
 		tileMap->ImportTileMap("../res/Tiled/engine1_test.tmx", "../res/Textures/tileset.png");
-		tileMap->SetSize(0.5f);
+ 		tileMap->SetSize(0.5f);
 	}
 
 	void Game::Update()
